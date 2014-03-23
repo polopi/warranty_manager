@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem "active_admin_import" , '2.1.0'
 
 gem 'carrierwave'
 

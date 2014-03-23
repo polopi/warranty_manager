@@ -3,10 +3,22 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+
+    columns do
+
+      column do
+        panel "Next expiring warranties" do
+          table do
+            Warranty.all.each do |w|
+              if !w.lifetime && r = w.end_date - 1.year < Date.today
+                tr do
+                  td link_to w.product.name, admin_product_path(w.product)
+                  td w.end_date.strftime("%d/%m/%Y")
+                end
+              end
+            end
+          end
+        end
       end
     end
 

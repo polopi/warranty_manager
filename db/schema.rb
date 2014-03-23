@@ -63,9 +63,10 @@ ActiveRecord::Schema.define(version: 20140322145907) do
   add_index "products", ["category_id"], name: "index_products_on_category_id"
 
   create_table "warranties", force: true do |t|
-    t.date     "purchase"
-    t.integer  "duration"
     t.integer  "product_id"
+    t.date     "purchase_date"
+    t.integer  "duration"
+    t.boolean  "lifetime",      default: false
     t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
